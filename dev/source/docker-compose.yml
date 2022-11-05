@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ../dev/source/defaultdb.sql:/docker-entrypoint-initdb.d/defaultdb.sql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=doadmin
+      - POSTGRES_PASSWORD=postgres
+      - TZ=UTC
+      - PGTZ=UTC
+  web:
+    build: .
+    command: python GlobalTraqs/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=doadmin
+      - POSTGRES_PASSWORD=postgres
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_PASSWORD=adminpassword
+      - DJANGO_SUPERUSER_EMAIL="admin@admin.com"
+    depends_on:
+      - db
+volumes:
+  dbdata:

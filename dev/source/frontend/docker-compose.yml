@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  node:
+    stdin_open: true
+    build: .
+    command: npm start
+    volumes:
+      - .:/app:rw
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
