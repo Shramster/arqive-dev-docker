@@ -1,4 +1,4 @@
-The ArQive Docker Dev Environment
+##The ArQive Docker Dev Environment
 
 This bash script should set up the environment you'll need:
 
@@ -8,23 +8,23 @@ This bash script should set up the environment you'll need:
     - Some shell or environment to run a bash script (WSL 2.0, git bash etc)
 
 ## BEFORE RUNNING:
-##
-##	1. You will need to get a .sql file from the production server and
-##	place it in the directory dev/source it should look like:
-##
-##		dev/source/defaultdb.sql
-##
-##      2. Check if you can run docker and docker-compose from your shell
-##	enviroment. You might need to add your $USER to the docker usergroup.  Try this
-##	command:
-##
-##	docker ps
-##
-##      If this results in some kind of error message you likely need to create and add yourself
-##      to the docker group.  Follow the instructions on this page:
-##
-##        https://docs.docker.com/engine/install/linux-postinstall/
-##
+
+1. You will need to get a .sql file from the production server and
+  place it in the directory dev/source it should look like:
+
+  	dev/source/defaultdb.sql
+
+2. Check if you can run docker and docker-compose from your shell
+  enviroment. You might need to add your $USER to the docker usergroup.  Try this
+  command:
+
+	docker ps
+
+If this results in some kind of error message you likely need to create and add yourself
+to the docker group.  Follow the instructions on this page:
+
+        https://docs.docker.com/engine/install/linux-postinstall/
+
 
 Run the ./setup.sh script and follow the prompts.
 
