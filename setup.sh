@@ -1,7 +1,12 @@
 #!/bin/bash
 #WORKING_DIR=$(pwd)
 echo "Running initilization script, this will clone the repos and set up Docker containers"
-echo "Version 1.0 11/3/22"
+echo "Version 1.0 11/16/22"
+
+command -v docker >/dev/null 2>&1 || { echo >&2 "I require docker but it's not installed.  Aborting."; exit 1; }
+command -v docker-compose >/dev/null 2>&1 || { echo >&2 "I require docker-compose but it's not installed.  Aborting."; exit 1; }
+command -v git >/dev/null 2>&1 || { echo >&2 "I require git but it's not installed.  Aborting."; exit 1; }
+
 
 if [[ ! -f "dev/source/defaultdb.sql" ]]; then
   echo "ERROR:"
