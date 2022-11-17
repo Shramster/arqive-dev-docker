@@ -1,14 +1,32 @@
 #!/bin/bash
 #WORKING_DIR=$(pwd)
-echo "Running initilization script, this will clone the repos and set up Docker containers\n"
+echo "Running initilization script, this will clone the repos and set up Docker containers"
 echo "Version 1.0 11/3/22"
-git clone https://github.com/kennardlim1220/thearqive-backend
-###
-git clone https://github.com/kennardlim1220/arQive-frontend
+
+if [[ ! -f "dev/source/defaultdb.sql" ]]; then
+  echo "ERROR:"
+  echo "File dev/source/defaultdb.sql not found"
+  echo "Get a defaultdb.sql file and put it in the directory: dev/source"
+  exit 1
+fi
+
+
+if [[ -e "thearqive-backend" ]]; then
+  echo "Backend repo exists, skipping clone"
+else
+  git clone https://github.com/kennardlim1220/thearqive-backend
+fi
+
+if [[ -e "arQive-frontend" ]]; then
+  echo "Backend repo exists, skipping clone"
+else
+  git clone https://github.com/kennardlim1220/arQive-frontend
+fi
+##
 
 # CONSIDER ADDING .gitignore so that a git pull doesn't overwrite settings.ini settings.py etc
 
-# Copy backend settings files into place
+echo "Copying backend settings files into place"
 cp dev/source/settings.ini thearqive-backend/GlobalTraqs/settings.ini
 
 cp dev/source/settings.py thearqive-backend/GlobalTraqs/GlobalTraqs/settings.py

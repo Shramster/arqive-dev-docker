@@ -43,26 +43,13 @@ docker-compose down -v --remove-orphans
 
 docker-compose run node npm install
 
-echo "Test containers by running:\n docker-compose up \nIn the arqive-frontend and thearqive-backend directories (using sepaate terminals)\nthen navigate to 127.0.0.1:8000 for backend and 127.0.0.1:3000 for frontend"
+cd ..
 
-## Library is added throught the docker-compose file
-##And then add the pins
-#until docker-compose exec db psql -U postgres postgres -c "INSERT INTO pins_categorytype VALUES (2, 'Personal', '')" ; do
-#        echo "Waiting"
-#	sleep 1
-#done
-#until docker-compose exec db psql -U postgres postgres -c "INSERT INTO pins_categorytype VALUES (2, 'Historical', '');" ; do
-#        echo "Waiting"
-#	sleep 1
-#done
-#until docker-compose exec db psql -U postgres postgres -c "INSERT INTO pins_categorytype VALUES (3, 'Community', '');" ; do
-#        echo "Waiting"
-#	sleep 1
-#done
-#### Broken have to import "manually"
-##docker-compose exec web python GlobalTraqs/manage.py shell --plain -c "exec(open('/code/GlobalTraqs/old_story_upload.py').read())"
-##
-#### COPY .env file to frontend side of things
-##
-###docker-compose down
-###docker-compose up
+./dev/docker/test.sh
+
+echo "Attempting Spinning up both containers.."
+echo "Backend should pop up quick, frontend might take 30 seconds or so"
+echo "Test containers by navigating to 127.0.0.1:8000 for backend and 127.0.0.1:3000 for frontend"
+echo "To stop containers"
+echo "cd into arQive-frontend AND thearqive-backend and run:"
+echo "docker-compose stop"
