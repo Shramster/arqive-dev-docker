@@ -15,7 +15,7 @@ This bash script should set up the environment you'll need:
   	dev/source/defaultdb.sql
 
 2. Check if you can run docker and docker-compose from your shell
-  enviroment. You might need to add your $USER to the docker usergroup.  Try this
+  enviroment. You might need to add your $USER to the docker userg. roup.  Try this
   command:
 
 	docker ps
@@ -27,11 +27,18 @@ to the docker group.  Follow the instructions on this page:
 
 
 Run the ./setup.sh script and follow the prompts.
+When its done open this in a browswer to check if it worked,
+run the command:
 
-When its done open this in a browswer to check if it worked:
+`docker-compose up`
 
+in the frontend and backend directories to spin up the container,
+or you can use the Desktop app.
+
+Navigate to here with your web browswer:
 127.0.0.1:8000  -- This is the Django backend server
 127.0.0.1:3000  -- This is the React frontend side
+
 
 From here you should see the containers in Docker Desktop and
 you can easily spin them up, pause or whatever you need. Below
