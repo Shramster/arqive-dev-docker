@@ -5,7 +5,7 @@ services:
     image: postgres
     volumes:
       - dbdata:/var/lib/postgresql/data
-      - ../dev/source/defaultdb.sql:/docker-entrypoint-initdb.d/defaultdb.sql
+      - ../dev/source/backend/defaultdb.sql:/docker-entrypoint-initdb.d/defaultdb.sql
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=doadmin

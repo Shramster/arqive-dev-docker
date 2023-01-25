@@ -33,28 +33,5 @@ docker-compose exec web python GlobalTraqs/manage.py shell -c "exec(open('create
 # Copy API KEY .env file to front end
 cp ./.env ../arQive-frontend/.env
 
-
 # STOP BACK END PROCESS so FRONTEND install goes faster
 docker-compose stop
-
-cd ../arQive-frontend
-
-docker-compose down -v --remove-orphans
-
-docker-compose build
-
-docker-compose run node npm install
-
-cd ..
-
-./dev/docker/test.sh
-
-echo "Attempting Spinning up both containers.."
-echo "Backend should pop up quick, frontend might take 30 seconds or so"
-echo "Test containers by navigating to 127.0.0.1:8000 for backend and 127.0.0.1:3000 for frontend"
-echo ""
-echo ""
-echo "To stop containers"
-echo "cd into arQive-frontend AND thearqive-backend and run:"
-echo "docker-compose stop"
-echo "or stop them from Docker Desktop"
