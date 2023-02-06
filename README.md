@@ -3,7 +3,7 @@
 This bash script should set up the environment you'll need:
 
     - Docker
-    - docker-compose (only linux users, comes bundled with Docker for Mac and Windows)
+    - docker-compose (only linux users, comes bundled with Docker Desktop for Mac and Windows)
     - git
     - Some shell or environment to run a bash script (WSL 2.0, git bash etc)
 
