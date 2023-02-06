@@ -36,8 +36,8 @@ in the frontend and backend directories to spin up the container,
 or you can use the Desktop app.
 
 Navigate to here with your web browswer:
-127.0.0.1:8000  -- This is the Django backend server
-127.0.0.1:3000  -- This is the React frontend side
+- 127.0.0.1:8000   This is the Django backend server
+- 127.0.0.1:3000   This is the React frontend side
 
 
 From here you should see the containers in Docker Desktop and
