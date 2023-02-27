@@ -11,7 +11,7 @@ The Django and the backend requires some configuration and this project attempts
 
 #### Getting Started
 ---
-#### Dependencies
+#### Prerquisites 
 * Bash shell
     - For Windows: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> with Ubuntu, git bash and CIGWYN all worked
     - For Mac and Linux: Built-in bash shell
@@ -20,7 +20,7 @@ The Django and the backend requires some configuration and this project attempts
 - git
 - <a href="https://docs.docker.com/get-docker/">Docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a>
 
-#### Installation:
+#### Installation
 
     git clone github.com/Shramster/arqive-dev-docker
     cd arqive-dev-docker/
@@ -28,13 +28,15 @@ The Django and the backend requires some configuration and this project attempts
 
 Run the `./setup.sh` script and follow the prompts. This will clone the backend and frontend repos, build their containers and start the development servers.
 
+After running you should see the containers in Docker Desktop.
+
 Navigate to here with your web browser:
 
     127.0.0.1:8000   Backend Development Server
     127.0.0.1:3000   Frontend Development Server 
 
+If everything ran correctly the app served at 127.0.0.1:3000 should look and act like www.thearqive.com.
 
-From here you should see the containers in Docker Desktop. Docker is a open source project with a lot of documentation online so a quick search answers most questions.
 
 #### Organization:
 After running the directory structure works like this:
@@ -55,14 +57,6 @@ After running the directory structure works like this:
     └── setup.sh
 
 
-#### Documentation:
-
-* <a href="https://docs.docker.com/reference/">Docker</a>
-* <a href="https://docs.docker.com/compose/">docker-compose</a>
-* <a href="https://learn.microsoft.com/en-us/windows/wsl/">WSL 2.0</a>
-* <a href="https://docs.djangoproject.com/en/4.1/">Django Documentation</a>
-* <a href="https://nodejs.org/en/docs/">Node Live server</a>
-* <a href="https://devhints.io/docker-compose">Docker-compose CLI cheat-sheet</a>
 
 #### Trouble shooting
 ##### Backend
@@ -80,6 +74,15 @@ The postgres config is contained in the docker-compose.yml and is easy to change
 * `defaultdb.sql` is imported into the container via the `./thearqive-backend/docker-compose.yml`
 * user and password are defined in the backend `./thearqive-backend/docker-compose.yml`
 
+
+#### Documentation:
+
+* <a href="https://docs.docker.com/reference/">Docker</a>
+* <a href="https://docs.docker.com/compose/">docker-compose</a>
+* <a href="https://learn.microsoft.com/en-us/windows/wsl/">WSL 2.0</a>
+* <a href="https://docs.djangoproject.com/en/4.1/">Django Documentation</a>
+* <a href="https://nodejs.org/en/docs/">Node Live server</a>
+* <a href="https://devhints.io/docker-compose">Docker-compose CLI cheat-sheet</a>
 
 #### TODO:
 
