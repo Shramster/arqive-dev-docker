@@ -1,92 +1,92 @@
-##The ArQive Docker Dev Environment
-
-This bash script should set up the environment you'll need:
-
-    - Docker
-    - docker-compose (only linux users, comes bundled with Docker Desktop for Mac and Windows)
-    - git
-    - Some shell or environment to run a bash script (WSL 2.0, git bash etc)
-
-## BEFORE RUNNING:
-
-1. You will need to get a .sql file from the production server and
-  place it in the directory dev/source it should look like:
-
-  	dev/source/defaultdb.sql
-
-2. Check if you can run docker and docker-compose from your shell
-  enviroment. You might need to add your $USER to the docker userg. roup.  Try this
-  command:
-
-	docker ps
-
-If this results in some kind of error message you likely need to create and add yourself
-to the docker group.  Follow the instructions on this page:
-
-        https://docs.docker.com/engine/install/linux-postinstall/
+## The ArQive Docker Dev Environment
 
 
-Run the ./setup.sh script and follow the prompts.
-When its done open this in a browswer to check if it worked,
-run the command:
+This bash script creates Docker containers for the backend and frontend of www.thearqive.com Senior Design Project that can be used for a working environment.  Docker was chosen for this project so that different software versions could easily be subsituted and built to see how they work with eachother.  The project is designed to be forked, each user can configure the containers to fit the stack they are working on and share that with others. 
 
-`docker-compose up`
 
-in the frontend and backend directories to spin up the container,
-or you can use the Desktop app.
+Each contains the repo, Dockerfile and docker-compose.yml that pertains to their respective software stack.  These files are plain text and easy to modify, read up on the Docker and docker-compose documentation to make changes.  The repository and branch can be changed in the `./setup.sh` if you are cloning thre repos from somewhere else.
+
+The Django and the backend requires some configuration and this project attempts to automate that. However it might not always work in practice so an explanation of what's going on: 
+
+
+#### Getting Started
+---
+#### Dependencies
+  - Bash shell
+    - For Windows: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> with Ubuntu, git bash and CIGWYN all worked
+    - For Mac and Linux: Built-in bash shell
+  * git
+  * <a href="https://docs.docker.com/get-docker/">Docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a>
+  * A database dump from production: 
+
+	`dev/source/defaultdb.sql`
+
+#### Installation:
+
+    git clone github.com/Shramster/arqive-dev-docker
+    cd arqive-dev-docker/
+    ./setup.sh
+
+Run the `./setup.sh` script and follow the prompts. This will clone the backend and frontend repos, build their containers and start the development servers.
 
 Navigate to here with your web browswer:
-- 127.0.0.1:8000   This is the Django backend server
-- 127.0.0.1:3000   This is the React frontend side
+
+    127.0.0.1:8000   Backend Development Server
+    127.0.0.1:3000   Frontend Development Server 
 
 
-From here you should see the containers in Docker Desktop and
-you can easily spin them up, pause or whatever you need. Below
-are some commands if you wanna use the command line.  The Cheat
-sheet is helpful and I can show you more if you wanna learn.
-Docker is a open source project with a lot of documentation online
-so a quick search answers most questions.
+From here you should see the containers in Docker Desktop. Docker is a open source project with a lot of documentation online so a quick search answers most questions.
 
-HELPFUL COMMANDS
-CHEAT SHEET: https://devhints.io/docker-compose
+#### Organization:
+After running the script you will have the directories:
 
-docker-compose:
-  This command reads the docker-compose.yml in your current directory and performs an
-  action on the services
-   # Starts existing containers for a service.
-   docker-compose start
+    arqive-dev-docker/thearqive-backend 
+    arqive-dev-docker/arQive-frontend
 
-   # Stops running containers without removing them.
-   docker-compose stop
+The directory structure works like this:
 
-   # Pauses running containers of a service.
-   docker-compose pause
-
-   # Unpauses paused containers of a service.
-   docker-compose unpause
-
-   # Lists containers.
-   docker-compose ps
-
-   # Builds, (re)creates, starts, and attaches to containers for a service.
-   docker-compose up
-
-     Spins up whatever is detailed in the docker-compose.yml so:
-
-     `arQive-frontend/docker-compose up` will spin up the NODE development server
-         This can be verified by visiting: 127.0.0.1:3000  -- This is the React frontend site
+    │    
+    ├── thearqive-backend/		   
+    │    
+    ├──  arQive-frontend/		   
+    │    
+    ├── dev
+    │   ├── docker		// Contains: all *.sh used by setup.sh
+    │   └── source		// Contains: Dockerfiles, docker-compose.yml, create_api_key.py etc
+    │       │		 
+    │       ├── backend
+    │       └── frontend
+    │    
+    ├── README.md
+    └── setup.sh
 
 
-     `thearqive-backend/docker-compose up` will spin up Django/REST/Postgres and the Django development server
-     	This can be verified by visiting: 127.0.0.1:8000  -- This is the backend
+#### Impotant Documentation:
 
-   # Stops containers and removes containers, networks, volumes, and images created by up.
-   docker-compose down
+* <a href="https://docs.docker.com/reference/">Docker</a>
+* <a href="https://docs.docker.com/compose/">docker-compose</a>
+* <a href="https://learn.microsoft.com/en-us/windows/wsl/">WSL 2.0</a>
+* <a href="https://docs.djangoproject.com/en/4.1/">Django Documentation</a>
+* <a href="https://nodejs.org/en/docs/">Node Live server</a>
+* <a href="https://devhints.io/docker-compose">Docker-compose CLI cheat-sheet</a>
 
-     USEFUL COMMAND:
-	`docker-compose down -v --remove-orphans`
-          When you run this in the frontend or backend directory it will remove any "hanging" or "orphaned" volumes
-	  or containers.  This is necessary to get a clean slate sometimes.
+#### Trouble shooting
+##### Backend
+
+./dev/docker/buildbackend.sh
+* `docker-compose exec web python GlobalTraqs/manage.py createsuperuser --noinput`
+
+    This creates a super user for the Django admin page, the password and username are configured in the backend docker-compose.yml. If you can't login to the Django admin page, sspin up the backend container and run this command.
+* `docker-compose exec web python GlobalTraqs/manage.py shell -c "exec(open('create_api_key.py').read())" > .env`
+
+    Creates a .env file with an API key for the frontend that must be copied into the frontend directory so Node can source it when it boots up.  If the webpage is loading and displaying the map but not the pins this may be the culprit. Spin up the backend and try running this on it again or check whats in the .env file.
+###### Postgres:
+
+The postgres config is contained in the docker-compose.yml and is easy to change.
+* `defaultdb.sql` is imported into the container via the `./thearqive-backend/docker-compose.yml`
+* user and password are defined in the backend `./thearqive-backend/docker-compose.yml`
 
 
-  docker-compose down
+#### TODO:
+
+* Allow rebuilding of frontend and backend seperately

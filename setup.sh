@@ -1,11 +1,22 @@
 #!/bin/bash
-#WORKING_DIR=$(pwd)
 echo "Running initilization script, this will clone the repos and set up Docker containers"
 echo "Version 1.0 11/16/22"
+echo ""
 
-## Change these values to use a different branch
+
+## These values can be changed to the particular branch of the backend and frontent
+## that you want to use
+## WARNING: Depending on your fork of the project, you may need to configure the Dockerfile and 
+## docker-compose.yml in each directory to work correctly with configuration each repo is using.
+##
+##
+backend_repo="https://github.com/kennardlim1220/thearqive-backend"
 backend_branch=updated_stack
+
+frontend_repo="https://github.com/kennardlim1220/arQive-frontend"
 frontend_branch=updated_stack
+
+
 echo "Backend branch is: $backend_branch"
 echo "Frontend branch is: $frontend_branch"
 echo "-----------------------------------"
@@ -36,7 +47,7 @@ echo "Cloning backend, using branch $backend_branch ..."
 if [[ -e "thearqive-backend" ]]; then
   echo "Backend repo exists, skipping clone"
 else
-git clone --branch $backend_branch https://github.com/kennardlim1220/thearqive-backend
+git clone --branch $backend_branch $backend_repo 
   if [[ "$?" != "0" ]]; then
     echo "Frontend clone failed. Exiting"
     exit 1
@@ -51,7 +62,7 @@ echo "Cloning frontend, using branch $frontend_branch ..."
 if [[ -e "arQive-frontend" ]]; then
   echo "Frontend repo exists, skipping clone"
 else
-git clone --branch $frontend_branch https://github.com/kennardlim1220/arQive-frontend
+git clone --branch $frontend_branch $frontend_repo 
   if [[ "$?" != "0" ]]; then
     echo "Frontend clone failed. Exiting"
     exit 1
@@ -100,6 +111,15 @@ echo "Running: /dev/docker/buildfrontend.sh"
 
 ./dev/docker/buildfrontend.sh
 
+echo "Frontend and Backend builds completed"
+./dev/docker/spin-up.sh
 
-echo "Docker environment configured successfully"
+echo "Navigate to here with your web browswer:"
+echo "- 127.0.0.1:8000   Backend Development Server"
+echo "- 127.0.0.1:3000   Frontend Development Server"
+echo -n "Press any key to stop containers... "
+read -n 1 ans
 
+if [[ "$ans" != "y" ]]; then
+  ./dev/docker/spin-down.sh
+fi
