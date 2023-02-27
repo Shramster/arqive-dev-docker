@@ -37,12 +37,7 @@ Navigate to here with your web browser:
 From here you should see the containers in Docker Desktop. Docker is a open source project with a lot of documentation online so a quick search answers most questions.
 
 #### Organization:
-After running the script you will have the directories:
-
-    arqive-dev-docker/thearqive-backend 
-    arqive-dev-docker/arQive-frontend
-
-The directory structure works like this:
+After running the directory structure works like this:
 
     │    
     ├── thearqive-backend/		   
