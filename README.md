@@ -12,14 +12,13 @@ The Django and the backend requires some configuration and this project attempts
 #### Getting Started
 ---
 #### Dependencies
-  - Bash shell
+* Bash shell
     - For Windows: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> with Ubuntu, git bash and CIGWYN all worked
     - For Mac and Linux: Built-in bash shell
-  * git
-  * <a href="https://docs.docker.com/get-docker/">Docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a>
-  * A database dump from production: 
-
-	`dev/source/defaultdb.sql`
+- A database dump from production: 
+    - placed at: `dev/source/defaultdb.sql`
+- git
+- <a href="https://docs.docker.com/get-docker/">Docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a>
 
 #### Installation:
 
