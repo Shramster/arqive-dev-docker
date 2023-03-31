@@ -1,4 +1,25 @@
 #!/bin/bash
+printf "\nCopying backend settings files into place"
+
+if [[ -e "thearqive-backend/GlobalTraqs/settings.ini" ]]; then
+  printf "GlobalTraqs/Settings.ini exists, skipping copy"
+else
+  cp dev/source/backend/settings.ini thearqive-backend/GlobalTraqs/settings.ini
+fi
+
+if [[ -e "thearqive-backend/GlobalTraqs/GlobalTraqs/settings.py" ]]; then
+  printf "GlobalTraqs/GlobalTraqs/settings.py exists, skipping copy"
+else
+  cp dev/source/backend/settings.py thearqive-backend/GlobalTraqs/GlobalTraqs/settings.py
+fi
+
+cp dev/source/backend/docker-compose.yml thearqive-backend/docker-compose.yml
+
+cp dev/source/backend/Dockerfile thearqive-backend/Dockerfile
+
+cp dev/source/backend/requirements.txt thearqive-backend/requirements.txt
+
+cp dev/source/backend/create_api_key.py thearqive-backend/create_api_key.py
 cd thearqive-backend
 
 echo "Deleting old volumes, DB data will be lost..."
