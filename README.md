@@ -12,8 +12,8 @@ The Django and the backend requires some configuration and this project attempts
 #### Getting Started
 ---
 #### Prerquisites 
-* <a href="https://www.gnu.org/software/bash/">Bash shell</a>
-    - For Windows: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> with Ubuntu, git bash and CIGWYN all worked
+* POSIX / <a href="https://www.gnu.org/software/bash/">Bash shell</a>
+    - For Windows:<br> <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> using Ubuntu <br> <a href="https://git-scm.com/downloads">git bash</a><br><a href="https://www.cygwin.com/install.html">CIGWYN</a><br>
     - For Mac and Linux: Built-in bash shell
 - <a href="https://git-scm.com/">git</a>
 - <a href="https://docs.docker.com/get-docker/">Docker</a> and <a href="https://docs.docker.com/compose/install/">docker-compose</a>
@@ -75,7 +75,7 @@ The postgres config is contained in the docker-compose.yml and is easy to change
 * user and password are defined in the backend `./thearqive-backend/docker-compose.yml`
 
 
-#### Documentation:
+#### Further Readding / Documentation:
 
 * <a href="https://docs.docker.com/reference/">Docker</a>
 * <a href="https://docs.docker.com/compose/">docker-compose</a>
