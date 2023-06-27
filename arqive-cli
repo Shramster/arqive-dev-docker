@@ -1,0 +1,51 @@
+#!/bin/bash
+set -e
+export ADD_WORKDIR=$(cd $(dirname $0) && pwd)
+
+printf "
+
+ █████╗ ██████╗  ██████╗ ██╗██╗   ██╗███████╗    ██████╗ ███████╗██╗   ██╗    ██████╗  ██████╗  ██████╗██╗  ██╗███████╗██████╗ 
+██╔══██╗██╔══██╗██╔═══██╗██║██║   ██║██╔════╝    ██╔══██╗██╔════╝██║   ██║    ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
+███████║██████╔╝██║   ██║██║██║   ██║█████╗      ██║  ██║█████╗  ██║   ██║    ██║  ██║██║   ██║██║     █████╔╝ █████╗  ██████╔╝
+██╔══██║██╔══██╗██║▄▄ ██║██║╚██╗ ██╔╝██╔══╝      ██║  ██║██╔══╝  ╚██╗ ██╔╝    ██║  ██║██║   ██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
+██║  ██║██║  ██║╚██████╔╝██║ ╚████╔╝ ███████╗    ██████╔╝███████╗ ╚████╔╝     ██████╔╝╚██████╔╝╚██████╗██║  ██╗███████╗██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚══▀▀═╝ ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚══════╝  ╚═══╝      ╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+_________________Arqive____________________________________Dev__________________________________Docker___________________________
+
+This script is designed to clone the GitHub repositories for the frontend and backend of the arQive project and build docker
+containers for each repository. The file (./config.template) should be edited to reflect the location of the repos and the
+branches you are working with. Read the README
+"
+
+cli_help() {
+printf "
+Usage:  arqive COMMAND
+
+Run multi-container applications with Docker.
+
+COMMANDS:
+  build       Build or rebuild services
+  remove      Delete both backend and frontend repositories
+  down        Stop containers and networks
+  up          Create and start containers
+  "
+  exit 1
+}
+
+
+user_command=$1;
+
+printf "
+You entered {$user_command} 
+"
+
+  case "$user_command" in
+    build|b) $ADD_WORKDIR/dev/docker/setup.sh ;;
+    remove|r) $ADD_WORKDIR/dev/docker/remove.sh ;;
+    up|u) $ADD_WORKDIR/dev/docker/up.sh ;;
+    down|d) $ADD_WORKDIR/dev/docker/down.sh ;;
+    *) cli_help ;;
+  esac
+
+
+
