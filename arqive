@@ -1,0 +1,51 @@
+#!/bin/bash
+
+printf "
+_____________________Arqive-dev-docker_______________________________________________
+This script is designed to clone the GitHub repositories for the frontend and backend
+of the arQive project and build docker containers for each repository. The file
+(./dev/docker/setup.sh) should be edited to reflect the location of the repos and the
+branches you are working with.
+"
+
+cli_help() {
+  cli_name=${0##*/}
+  echo "
+$cli_name
+Brot and Games CLI
+Version: $(cat $BAGCLI_WORKDIR/VERSION)
+Usage: $cli_name [command]
+Commands:
+  deploy    Deploy
+  *         Help
+"
+printf "
+Usage:  arqive COMMAND
+
+Run multi-container applications with Docker.
+
+Commands:
+  build       Build or rebuild services
+  down        Stop and remove containers, networks
+  up          Create and start containers
+  version     Show the Docker Compose version information
+  "
+  exit 1
+}
+
+
+user_command=$1;
+
+printf "
+You entered {$user_command} 
+"
+
+
+  case "$user_command" in
+    build|b) echo "Building containers";;
+    up|u) echo "Creating and starting containers";;
+    down|d) echo "Stopping and Removing containers" ;;
+    *) cli_help ;;
+  esac
+
+

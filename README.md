@@ -12,7 +12,7 @@ The Django and the backend requires some configuration and this project attempts
 #### Getting Started
 ---
 #### Prerquisites 
-* POSIX / <a href="https://www.gnu.org/software/bash/">Bash shell</a>
+* A <a href="https://www.gnu.org/software/bash/">Bash shell</a> *to run the script*
     - For Windows:<br> <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> using Ubuntu <br> <a href="https://git-scm.com/downloads">git bash</a><br><a href="https://www.cygwin.com/install.html">CIGWYN</a><br>
     - For Mac and Linux: Built-in bash shell
 - <a href="https://git-scm.com/">git</a>

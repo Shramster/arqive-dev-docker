@@ -25,7 +25,7 @@ backend_repo="https://github.com/kennardlim1220/thearqive-backend"
 backend_branch=updated_stack
 
 frontend_repo="https://github.com/kennardlim1220/arQive-frontend"
-frontend_branch=updated_stack
+frontend_branch=ui-changes
 
 
 printf "
