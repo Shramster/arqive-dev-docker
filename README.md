@@ -4,7 +4,8 @@
 This bash script creates Docker containers for the backend and frontend of www.thearqive.com Senior Design Project that can be used for a working environment.  Docker was chosen for this project so that different software versions could easily be substituted and built to see how they work with eachother.  The project is designed to be forked, each user can configure the containers to fit the stack they are working on and share that with others. 
 
 
-Each contains the repo, Dockerfile and docker-compose.yml that pertains to their respective software stack.  These files are plain text and easy to modify, read up on the Docker and docker-compose documentation to make changes.  The repository and branch can be changed in the `./setup.sh` if you are cloning the repos from somewhere else.
+Each contains the repo, Dockerfile and docker-compose.yml that pertains to their respective software stack.  These files are plain text and easy to modify, read up on the <a href="https://docs.docker.com/get-started/">Docker</a> and <a href="https://docs.docker.com/compose/">docker-compose</a>
+ documentation to make changes.  The repository and branch can be set in the `./config.template` .
 
 The Django and the backend requires some configuration and this project attempts to automate that. However it might not always work in practice so an explanation of what's going on: 
 
@@ -24,37 +25,41 @@ The Django and the backend requires some configuration and this project attempts
 
     git clone github.com/Shramster/arqive-dev-docker
     cd arqive-dev-docker/
-    ./setup.sh
 
-Run the `./setup.sh` script and follow the prompts. This will clone the backend and frontend repos, build their containers and start the development servers.
+Edit the `./config.template` to reflect the Repo and Branches you are using and rename it to `config`.  Then run:
 
-After running you should see the containers in Docker Desktop.
+    arqive build
 
-Navigate to here with your web browser:
+This will clone the backend and frontend repos, build their containers and start the development servers the containers will show up in Docker Desktop.
+
+If everything ran correctly the app served at 127.0.0.1:3000 should look and act like www.thearqive.com.
+Navigate to here with your web browser to confirm:
 
     127.0.0.1:8000   Backend Development Server
     127.0.0.1:3000   Frontend Development Server 
 
-If everything ran correctly the app served at 127.0.0.1:3000 should look and act like www.thearqive.com.
 
 
 #### Organization:
 After running the directory structure works like this:
 
+    arqive-dev-docker
+    .
     │    
-    ├── thearqive-backend/		   
+    ├── thearqive-backend/	// Backend Repo 
     │    
-    ├──  arQive-frontend/		   
+    ├──  arQive-frontend/	// Frontend Repo
     │    
     ├── dev
-    │   ├── docker		// Contains: all *.sh used by setup.sh
+    │   ├── docker		// Contains: all commands used by arqive 
     │   └── source		// Contains: Dockerfiles, docker-compose.yml, create_api_key.py etc
     │       │		 
     │       ├── backend
     │       └── frontend
     │    
-    ├── README.md
-    └── setup.sh
+    ├── README.md		// This File
+    ├── arqive-cli		// Execuatable
+    └── config.template		// Config file that needs to be edited and renamed to => `config`
 
 
 

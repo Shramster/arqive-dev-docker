@@ -1,0 +1,6 @@
+
+BACKEND_REPO="URL to Backend Repo"
+BACKEND_BRANCH=Backend_Branch_Name
+
+FRONTEND_REPO="URL to Frontend Repo"
+FRONTEND_BRANCH=Frontend_Branch_Name
